@@ -1,1 +1,109 @@
+body {
+  height: 97vh;
+  background-image: url(../images/lfz-background.jpg);
+}
 
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+  margin: auto;
+}
+
+.row-1 {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.row-2 {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  margin-bottom: .5rem;
+}
+
+.col-1 {
+  width: 8%;;
+}
+
+.col-2 {
+  width: 16%;;
+}
+
+.col-3 {
+  width: 24%;;
+}
+
+.col-4 {
+  width: 32%;;
+}
+
+.col-5 {
+  width: 40%;;
+}
+
+.col-6 {
+  width: 48%;;
+}
+
+.col-7 {
+  width: 56%;;
+}
+
+.col-8 {
+  width: 64%;;
+}
+
+.col-9 {
+  width: 72%;;
+}
+
+.col-10 {
+  width: 80%;;
+}
+
+.col-11 {
+  width: 88%;;
+}
+
+.col-12 {
+  width: 96%;;
+}
+
+aside.col-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main.col-10 {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.blue {
+  background-color: #86CEEB;
+  width: 75%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+card {
+  height: 30%;
+  background-image: url(../images/lfz-card.jpg);
+  background-size: cover;
+}
