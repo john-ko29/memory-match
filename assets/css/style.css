@@ -74,14 +74,14 @@ body {
   width: 96%;;
 }
 
-aside.col-2 {
+aside{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-main.col-10 {
+main {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
