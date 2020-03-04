@@ -25,6 +25,7 @@ body {
   border: 5px solid cornflowerblue;
   text-align: center;
   width: 50%;
+  padding: 10px;
 }
 
 .row-1 {
@@ -131,6 +132,11 @@ card {
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
+}
+
+button {
+  font-size: 2rem;
+  padding: 10px;
 }
 
 .card-back {
