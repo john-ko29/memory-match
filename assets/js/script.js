@@ -18,6 +18,7 @@ var matches = 0;
 var attempts = 0;
 var gamesPlayed = 0;
 displayStats();
+shuffle();
 
 function handleClick(event) {
   if(event.target.className.indexOf("card-back") === -1) {
@@ -86,5 +87,41 @@ function resetCards() {
   var hiddenCards = document.querySelectorAll(".card-back");
   for(var index = 0; index < hiddenCards.length; index++) {
     hiddenCards[index].classList.remove("hidden");
+  }
+  shuffle();
+}
+
+function shuffle() {
+  var cardArray = document.querySelectorAll("card.col-2");
+  destroyChildren(mainElement);
+  var newOrder = shuffleCards(cardArray);
+  for(var index = 0; index < newOrder.length; index++) {
+    mainElement.appendChild(newOrder[index]);
+  }
+}
+
+function shuffleCards(cardArray) {
+  // for(var index = 0; index < cardArray.length; index++) {
+  //   var randomPosition = Math.floor(Math.random() * cardArray.length);
+  //   var placeHolder = cardArray[index];
+  //   cardArray[index] = cardArray[randomPosition];
+  //   cardArray[randomPosition] = placeHolder;
+  // }
+  var currentArray = []
+  var newArray = []
+  for (var i = 0; i < cardArray.length; i++) {
+   currentArray[i] = cardArray[i];
+  }
+  while (currentArray[0]) {
+    var randomPosition = Math.floor(Math.random() * currentArray.length);
+    newArray.push(currentArray[randomPosition]);
+    currentArray.splice(randomPosition, 1);
+  }
+  return newArray;
+}
+
+function destroyChildren(element) {
+  while(element.firstChild) {
+    element.removeChild(element.firstChild);
   }
 }
