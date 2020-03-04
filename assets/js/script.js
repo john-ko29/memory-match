@@ -1,6 +1,9 @@
 var mainElement = document.getElementById("gameCards");
 mainElement.addEventListener("click", handleClick);
 var modalElement = document.getElementById("modal");
+var gamePlayedElement = document.getElementById("gamePlayed");
+var attemptsElement = document.getElementById("attempts");
+var accuracyElement = document.getElementById("accuracy");
 
 var firstCardClicked;
 var secondCardClicked;
@@ -9,6 +12,9 @@ var secondCardClasses;
 
 var maxMatches = 9;
 var matches = 0;
+
+var attempts = 0;
+var gamesPlayed = 0;
 
 function handleClick(event) {
   if(event.target.className.indexOf("card-back") === -1) {
@@ -28,12 +34,16 @@ function handleClick(event) {
       mainElement.addEventListener("click", handleClick);
       firstCardClicked = null;
       secondCardClicked = null;
-      matches++
+      matches++;
+      attempts++;
+      displayStats();
       if(matches === maxMatches) {
         modalElement.classList.remove("hidden");
       }
     } else {
       setTimeout(hideCard, 1500);
+      attempts++;
+      displayStats();
     }
   }
 }
@@ -44,4 +54,14 @@ function hideCard() {
   firstCardClicked = null;
   secondCardClicked = null;
   mainElement.addEventListener("click", handleClick);
+}
+
+function displayStats() {
+  gamePlayedElement.textContent = gamesPlayed;
+  attemptsElement.textContent = attempts;
+  accuracyElement.textContent = calculateAccuracy(attempts, matches);
+}
+
+function calculateAccuracy(attempt, match){
+  return Math.trunc((match / attempt) * 100) + "%";
 }
