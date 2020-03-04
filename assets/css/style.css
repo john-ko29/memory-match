@@ -10,6 +10,23 @@ body {
   margin: auto;
 }
 
+.modal-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+}
+
+.modal-content {
+  background-color: springgreen;
+  border: 5px solid cornflowerblue;
+  text-align: center;
+  width: 50%;
+}
+
 .row-1 {
   width: 100%;
   height: 10%;
