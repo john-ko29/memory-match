@@ -7,6 +7,25 @@ var accuracyElement = document.getElementById("accuracy");
 var buttonElement = document.getElementById("resetGame");
 buttonElement.addEventListener("click", resetGame);
 
+var cardFrontArray = ["css-logo",
+                  "css-logo",
+                  "docker-logo",
+                  "docker-logo",
+                  "gitHub-logo",
+                  "gitHub-logo",
+                  "html-logo",
+                  "html-logo",
+                  "js-logo",
+                  "js-logo",
+                  "mysql-logo",
+                  "mysql-logo",
+                  "node-logo",
+                  "node-logo",
+                  "php-logo",
+                  "php-logo",
+                  "react-logo",
+                  "react-logo"]
+
 var firstCardClicked;
 var secondCardClicked;
 var firstCardClasses;
@@ -92,8 +111,8 @@ function resetCards() {
 }
 
 function shuffle() {
-  var cardArray = document.querySelectorAll("card.col-2");
   destroyChildren(mainElement);
+  var cardArray = createCard(cardFrontArray)
   var newOrder = shuffleCards(cardArray);
   for(var index = 0; index < newOrder.length; index++) {
     mainElement.appendChild(newOrder[index]);
@@ -101,12 +120,6 @@ function shuffle() {
 }
 
 function shuffleCards(cardArray) {
-  // for(var index = 0; index < cardArray.length; index++) {
-  //   var randomPosition = Math.floor(Math.random() * cardArray.length);
-  //   var placeHolder = cardArray[index];
-  //   cardArray[index] = cardArray[randomPosition];
-  //   cardArray[randomPosition] = placeHolder;
-  // }
   var currentArray = []
   var newArray = []
   for (var i = 0; i < cardArray.length; i++) {
@@ -124,4 +137,26 @@ function destroyChildren(element) {
   while(element.firstChild) {
     element.removeChild(element.firstChild);
   }
+}
+
+function createCard(cardArray) {
+  var newArray = [];
+  for(var index = 0; index < cardArray.length; index++) {
+    var card = document.createElement("card");
+    card.classList.add("col-2");
+
+    var cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardFront.classList.add(cardFrontArray[index]);
+
+    var cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+
+    card.appendChild(cardFront);
+    card.appendChild(cardBack);
+
+    newArray[index] = card;
+  }
+
+  return newArray;
 }
