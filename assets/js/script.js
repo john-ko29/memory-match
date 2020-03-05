@@ -7,6 +7,8 @@ var accuracyElement = document.getElementById("accuracy");
 var buttonElement = document.getElementById("resetGame");
 var victoryAudio = document.getElementById("victory");
 buttonElement.addEventListener("click", resetGame);
+var liveElement = document.getElementById("live");
+var gameOverElement = document.getElementById("game-over")
 
 var cardFrontArray = ["buster-sword",
                   "buster-sword",
@@ -37,6 +39,7 @@ var matches = 0;
 
 var attempts = 0;
 var gamesPlayed = 0;
+var live = 10;
 displayStats();
 shuffle();
 
@@ -68,6 +71,10 @@ function handleClick(event) {
     } else {
       setTimeout(hideCard, 1500);
       attempts++;
+      live--;
+      if (live === 0) {
+        gameOverElement.classList.remove("hidden");
+      }
       displayStats();
     }
   }
@@ -85,6 +92,7 @@ function displayStats() {
   gamePlayedElement.textContent = gamesPlayed;
   attemptsElement.textContent = attempts;
   accuracyElement.textContent = calculateAccuracy(attempts, matches);
+  liveElement.textContent = live;
 }
 
 function calculateAccuracy(attempt, match){
@@ -97,6 +105,7 @@ function calculateAccuracy(attempt, match){
 function resetGame() {
   matches = 0;
   attempts = 0;
+  live = 10;
   gamesPlayed++;
 
   displayStats();
