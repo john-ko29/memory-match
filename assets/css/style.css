@@ -1,6 +1,8 @@
 body {
   height: 97vh;
-  background-image: url(../images/lfz-background.jpg);
+  background-image: url(../images/ff-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -140,43 +142,43 @@ button {
 }
 
 .card-back {
-  background-image: url(../images/lfz-card.jpg);
+  background-image: url(../images/ff-front.jpeg);
 }
 
-.css-logo {
-  background-image: url(../images/css-logo.png);
+.buster-sword {
+  background-image: url(../images/bustersword.png);
 }
 
-.docker-logo {
-  background-image: url(../images/docker-logo.jpg);
+.revolver {
+  background-image: url(../images/revolver.png);
 }
 
-.gitHub-logo {
-  background-image: url(../images/gitHub-logo.png);
+.pinwheel {
+  background-image: url(../images/pinwheel.jpg);
 }
 
-.html-logo {
-  background-image: url(../images/html-logo.png);
+.mage-masher {
+  background-image: url(../images/masher.png);
 }
 
-.js-logo {
-  background-image: url(../images/js-logo.png);
+.brotherhood {
+  background-image: url(../images/brotherhood.png);
 }
 
-.mysql-logo {
-  background-image: url(../images/mysql-logo.jpg);
+.blazefire {
+  background-image: url(../images/blazefire.png);
 }
 
-.node-logo {
-  background-image: url(../images/node-logo.png);
+.braveheart {
+  background-image: url(../images/braveheart.png);
 }
 
-.php-logo {
-  background-image: url(../images/php-logo.jpeg);
+.hardedge {
+  background-image: url(../images/hardedge.png);
 }
 
-.react-logo {
-  background-image: url(../images/react-logo.png);
+.broadsword {
+  background-image: url(../images/broadsword.png);
 }
 
 .hidden {

@@ -5,26 +5,27 @@ var gamePlayedElement = document.getElementById("gamePlayed");
 var attemptsElement = document.getElementById("attempts");
 var accuracyElement = document.getElementById("accuracy");
 var buttonElement = document.getElementById("resetGame");
+var victoryAudio = document.getElementById("victory");
 buttonElement.addEventListener("click", resetGame);
 
-var cardFrontArray = ["css-logo",
-                  "css-logo",
-                  "docker-logo",
-                  "docker-logo",
-                  "gitHub-logo",
-                  "gitHub-logo",
-                  "html-logo",
-                  "html-logo",
-                  "js-logo",
-                  "js-logo",
-                  "mysql-logo",
-                  "mysql-logo",
-                  "node-logo",
-                  "node-logo",
-                  "php-logo",
-                  "php-logo",
-                  "react-logo",
-                  "react-logo"]
+var cardFrontArray = ["buster-sword",
+                  "buster-sword",
+                  "revolver",
+                  "revolver",
+                  "pinwheel",
+                  "pinwheel",
+                  "mage-masher",
+                  "mage-masher",
+                  "brotherhood",
+                  "brotherhood",
+                  "blazefire",
+                  "blazefire",
+                  "braveheart",
+                  "braveheart",
+                  "hardedge",
+                  "hardedge",
+                  "broadsword",
+                  "broadsword"]
 
 var firstCardClicked;
 var secondCardClicked;
@@ -62,6 +63,7 @@ function handleClick(event) {
       displayStats();
       if(matches === maxMatches) {
         modalElement.classList.remove("hidden");
+        playVictory();
       }
     } else {
       setTimeout(hideCard, 1500);
@@ -159,4 +161,8 @@ function createCard(cardArray) {
   }
 
   return newArray;
+}
+
+function playVictory() {
+  victoryAudio.play();
 }
