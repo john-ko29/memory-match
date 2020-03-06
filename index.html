@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>LFZ Memory Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
 
@@ -15,7 +17,7 @@
       <div class="row-2">
         <aside class="col-2">
           <h2 class="blue">Stats</h2>
-          <h2 class="blue">Game Played</h2>
+          <h2 class="blue">Round</h2>
           <h2 id="gamePlayed" class="blue">0</h2>
           <h2 class="blue">Attempts</h2>
           <h2 id="attempts" class="blue">0</h2>
@@ -28,6 +30,9 @@
         </main>
       </div>
     </div>
+    <div id="bgm" class="bgm">
+      <i class="fa fa-volume-off"></i>
+    </div>
     <div id="modal" class="modal-overlay hidden">
       <div class="modal-content">
         <h1>Congratulations!</h1>
@@ -36,13 +41,11 @@
       </div>
     </div>
     <div id="game-over" class="modal-overlay hidden">
-      <div class="modal-content">
-        <h1>Game Over!</h1>
-        <h1>Try Again?</h1>
-        <!-- <button id="resetGame">Would You Like to Play Again?</button> -->
+      <div class="gameover-content">
+        <button id="resetGameOver">Would You Like to Play Again?</button>
       </div>
     </div>
-    <audio id="victory" src="assets/audio/final-fantasy-vii-victory-fanfare-1.mp3"></audio>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>

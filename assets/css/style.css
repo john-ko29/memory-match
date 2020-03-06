@@ -1,7 +1,8 @@
 body {
-  height: 97vh;
+  height: 98vh;
   background-image: url(../images/ff-background.jpg);
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -28,6 +29,23 @@ body {
   text-align: center;
   width: 50%;
   padding: 10px;
+}
+
+.gameover-content {
+  text-align: center;
+  color: white;
+  width: 90%;
+  height: 90vh;
+  background-image: url(../images/gameover.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#resetGameOver {
+  margin: 0 30px 40px;
 }
 
 .row-1 {
@@ -116,7 +134,8 @@ main {
 .blue {
   background-color: #86CEEB;
   width: 75%;
-  height: 20%;
+  height: 10%;
+  margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,6 +144,14 @@ main {
 card {
   height: 30%;
   position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+  transition: 0.8s;
+  transform-style: preserve-3d;
+}
+
+card.click {
+  transform: rotateY(180deg);
 }
 
 .card-front, .card-back {
@@ -139,6 +166,16 @@ card {
 button {
   font-size: 2rem;
   padding: 10px;
+  cursor: pointer;
+}
+
+.bgm {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .card-back {
@@ -183,4 +220,10 @@ button {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 1250px) {
+  card {
+    height: 25%;
+  }
 }

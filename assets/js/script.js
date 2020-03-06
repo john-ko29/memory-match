@@ -5,10 +5,20 @@ var gamePlayedElement = document.getElementById("gamePlayed");
 var attemptsElement = document.getElementById("attempts");
 var accuracyElement = document.getElementById("accuracy");
 var buttonElement = document.getElementById("resetGame");
-var victoryAudio = document.getElementById("victory");
+var buttonElement2 = document.getElementById("resetGameOver");
 buttonElement.addEventListener("click", resetGame);
+buttonElement2.addEventListener("click", resetGame);
 var liveElement = document.getElementById("live");
 var gameOverElement = document.getElementById("game-over")
+var volumeElement = document.getElementById("bgm");
+volumeElement.addEventListener("click", toggleAudio);
+
+var audioElement = document.createElement("audio");
+var audio = {
+  "victory": "assets/audio/final-fantasy-vii-victory-fanfare-1.mp3",
+  "gameover": "assets/audio/gameover.mp3",
+  "bgm": "assets/audio/bgm.mp3"
+};
 
 var cardFrontArray = ["buster-sword",
                   "buster-sword",
@@ -65,15 +75,28 @@ function handleClick(event) {
       attempts++;
       displayStats();
       if(matches === maxMatches) {
+        if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
+          toggleAudio();
+        }
         modalElement.classList.remove("hidden");
-        playVictory();
+        playAudio(audio.victory);
+        setTimeout(function() {
+          stopAudio(audio.victory);
+        }, 3500);
       }
     } else {
       setTimeout(hideCard, 1500);
       attempts++;
       live--;
       if (live === 0) {
+        if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
+          toggleAudio();
+        }
         gameOverElement.classList.remove("hidden");
+        playAudio(audio.gameover);
+        setTimeout(function() {
+          stopAudio(audio.gameover);
+        }, 5000)
       }
       displayStats();
     }
@@ -111,6 +134,7 @@ function resetGame() {
   displayStats();
   resetCards();
   modalElement.classList.add("hidden");
+  gameOverElement.classList.add("hidden");
 }
 
 function resetCards() {
@@ -172,6 +196,31 @@ function createCard(cardArray) {
   return newArray;
 }
 
-function playVictory() {
-  victoryAudio.play();
+function playAudio(src) {
+  audioElement.setAttribute("src", src);
+  // if (src === "assets/audio/bgm.mp3") {
+  //   audioElement.setAttribute("controls loop", "");
+  // }
+  audioElement.play();
+}
+
+function stopAudio(src) {
+  audioElement.setAttribute("src", src);
+  audioElement.pause();
+  audioElement.currentTime = 0.0;
+}
+
+function toggleAudio() {
+  var toggle = volumeElement.firstElementChild.className;
+  volumeElement.firstElementChild.remove();
+  var newToggle = document.createElement("i");
+  if (toggle === "fa fa-volume-off") {
+    newToggle.className = "fa fa-volume-up";
+    playAudio(audio.bgm);
+  }
+  else {
+    newToggle.className = "fa fa-volume-off";
+    stopAudio(audio.bgm);
+  }
+  volumeElement.appendChild(newToggle);
 }
