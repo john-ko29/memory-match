@@ -8,16 +8,19 @@ var buttonElement = document.getElementById("resetGame");
 var buttonElement2 = document.getElementById("resetGameOver");
 buttonElement.addEventListener("click", resetGame);
 buttonElement2.addEventListener("click", resetGame);
-var liveElement = document.getElementById("live");
 var gameOverElement = document.getElementById("game-over")
 var volumeElement = document.getElementById("bgm");
-volumeElement.addEventListener("click", toggleAudio);
+volumeElement.addEventListener("click", toggleAudioIcon);
+var healthBarElement = document.getElementById("hp-current");
+var healthPercentageElement = document.getElementById("healthPerc");
+var limitBreakElement = document.getElementById("limitBreak");
 
 var audioElement = document.createElement("audio");
 var audio = {
   "victory": "assets/audio/final-fantasy-vii-victory-fanfare-1.mp3",
   "gameover": "assets/audio/gameover.mp3",
-  "bgm": "assets/audio/bgm.mp3"
+  "bgm": "assets/audio/bgm.mp3",
+  "limitBreak": "assets/audio/limit-break.mp3"
 };
 
 var cardFrontArray = ["buster-sword",
@@ -50,6 +53,9 @@ var matches = 0;
 var attempts = 0;
 var gamesPlayed = 0;
 var live = 10;
+var matchInRow = 0;
+var limitBreak = "Off";
+
 displayStats();
 shuffle();
 
@@ -57,6 +63,7 @@ function handleClick(event) {
   if(event.target.className.indexOf("card-back") === -1) {
     return;
   }
+  event.target.parentElement.classList.add("flip");
   var targetElement = event.target;
   targetElement.classList.add("hidden");
 
@@ -73,10 +80,11 @@ function handleClick(event) {
       secondCardClicked = null;
       matches++;
       attempts++;
+      matchInRow++;
       displayStats();
       if(matches === maxMatches) {
         if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
-          toggleAudio();
+          toggleAudioIcon();
         }
         modalElement.classList.remove("hidden");
         playAudio(audio.victory);
@@ -88,9 +96,10 @@ function handleClick(event) {
       setTimeout(hideCard, 1500);
       attempts++;
       live--;
+      matchInRow--;
       if (live === 0) {
         if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
-          toggleAudio();
+          toggleAudioIcon();
         }
         gameOverElement.classList.remove("hidden");
         playAudio(audio.gameover);
@@ -109,13 +118,17 @@ function hideCard() {
   firstCardClicked = null;
   secondCardClicked = null;
   mainElement.addEventListener("click", handleClick);
+  var flipCards = document.querySelectorAll(".flip");
+  for (var index = 0; index < flipCards.length; index++) {
+    flipCards[index].classList.remove("flip");
+  }
 }
 
 function displayStats() {
   gamePlayedElement.textContent = gamesPlayed;
   attemptsElement.textContent = attempts;
   accuracyElement.textContent = calculateAccuracy(attempts, matches);
-  liveElement.textContent = live;
+  calcHealthBar(live);
 }
 
 function calculateAccuracy(attempt, match){
@@ -198,9 +211,6 @@ function createCard(cardArray) {
 
 function playAudio(src) {
   audioElement.setAttribute("src", src);
-  // if (src === "assets/audio/bgm.mp3") {
-  //   audioElement.setAttribute("controls loop", "");
-  // }
   audioElement.play();
 }
 
@@ -210,7 +220,7 @@ function stopAudio(src) {
   audioElement.currentTime = 0.0;
 }
 
-function toggleAudio() {
+function toggleAudioIcon() {
   var toggle = volumeElement.firstElementChild.className;
   volumeElement.firstElementChild.remove();
   var newToggle = document.createElement("i");
@@ -223,4 +233,22 @@ function toggleAudio() {
     stopAudio(audio.bgm);
   }
   volumeElement.appendChild(newToggle);
+}
+
+function calcHealthBar(live) {
+  var currentHealth = live * 10;
+  var percentageHealth = currentHealth + "%"
+  healthPercentageElement.textContent = percentageHealth
+  healthBarElement.style.width = percentageHealth;
+}
+
+function toggleLimitBreak(){
+  if(limitBreak === "Off") {
+    limitBreak = "On";
+    limitBreakElement.textContent = limitBreak;
+    playAudio(audio.limitBreak);
+  } else if (limitBreak === "On") {
+    limitBreak = "Off";
+    limitBreakElement.textContent = limitBreak;
+  }
 }
