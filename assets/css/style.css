@@ -157,6 +157,7 @@ main {
   width: 75%;
   background-color: #050177;
   border: 3px solid #C2C5C1;
+  border-style: outset;
   color: white;
   display: flex;
   flex-direction: column;
@@ -176,6 +177,10 @@ main {
 
 .menu-layout > * {
   margin: 0;
+}
+
+#changeDifficulty, #hint {
+  cursor: pointer;
 }
 
 .hp-layout > * {
@@ -206,6 +211,7 @@ card {
   transition: 0.8s;
   perspective: 1000px;
   transform-style: preserve-3d;
+  box-sizing: border-box;
 }
 
 .flip {
@@ -221,6 +227,13 @@ card {
   position: absolute;
 }
 
+.hintCard {
+  border: 5px solid chartreuse;
+}
+
+#hintText {
+  text-transform: capitalize;
+}
 
 button {
   font-size: 2rem;
@@ -281,8 +294,12 @@ button {
   display: none;
 }
 
-@media (max-width: 1250px) {
-  card {
-    height: 25%;
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (min-width: 460px) {
+  aside {
+    display: block;
   }
 }

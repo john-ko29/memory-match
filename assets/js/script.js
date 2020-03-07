@@ -14,6 +14,13 @@ volumeElement.addEventListener("click", toggleAudioIcon);
 var healthBarElement = document.getElementById("hp-current");
 var healthPercentageElement = document.getElementById("healthPerc");
 var limitBreakElement = document.getElementById("limitBreak");
+var changeDifficultyElement = document.getElementById("changeDifficulty");
+changeDifficultyElement.addEventListener("click", changeDifficulty);
+var currentDifficultyElement = document.getElementById("difficulty");
+var currentDifficulty = "Normal";
+var hintElement = document.getElementById("hint");
+hintElement.addEventListener("click", clickHint);
+var hintTextElement = document.getElementById("hintText");
 
 var audioElement = document.createElement("audio");
 var audio = {
@@ -22,6 +29,11 @@ var audio = {
   "bgm": "assets/audio/bgm.mp3",
   "limitBreak": "assets/audio/limit-break.mp3"
 };
+
+var difficultyIndex = 1;
+var difficulty = ["Easy",
+                  "Normal",
+                  "Hard"];
 
 var cardFrontArray = ["buster-sword",
                   "buster-sword",
@@ -52,9 +64,9 @@ var matches = 0;
 
 var attempts = 0;
 var gamesPlayed = 0;
-var live = 10;
+var live = 100;
 var matchInRow = 0;
-var limitBreak = "Off";
+var limitBreak = false;
 
 displayStats();
 shuffle();
@@ -63,6 +75,7 @@ function handleClick(event) {
   if(event.target.className.indexOf("card-back") === -1) {
     return;
   }
+  removeHint()
   event.target.parentElement.classList.add("flip");
   var targetElement = event.target;
   targetElement.classList.add("hidden");
@@ -81,7 +94,13 @@ function handleClick(event) {
       matches++;
       attempts++;
       matchInRow++;
+      flipCard();
       displayStats();
+      if(matchInRow === 2 && matches !== maxMatches) {
+          matchInRow = 0;
+          toggleLimitBreak();
+          setTimeout(toggleLimitBreak, 10000);
+      }
       if(matches === maxMatches) {
         if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
           toggleAudioIcon();
@@ -95,9 +114,11 @@ function handleClick(event) {
     } else {
       setTimeout(hideCard, 1500);
       attempts++;
-      live--;
-      matchInRow--;
-      if (live === 0) {
+      if (limitBreak === false) {
+      calculateDamage(currentDifficulty);
+      }
+      matchInRow = 0;
+      if (live <= 0) {
         if (volumeElement.firstElementChild.className === "fa fa-volume-up") {
           toggleAudioIcon();
         }
@@ -118,6 +139,10 @@ function hideCard() {
   firstCardClicked = null;
   secondCardClicked = null;
   mainElement.addEventListener("click", handleClick);
+  flipCard();
+}
+
+function flipCard() {
   var flipCards = document.querySelectorAll(".flip");
   for (var index = 0; index < flipCards.length; index++) {
     flipCards[index].classList.remove("flip");
@@ -141,9 +166,10 @@ function calculateAccuracy(attempt, match){
 function resetGame() {
   matches = 0;
   attempts = 0;
-  live = 10;
+  live = 100;
   gamesPlayed++;
 
+  removeHint();
   displayStats();
   resetCards();
   modalElement.classList.add("hidden");
@@ -236,19 +262,70 @@ function toggleAudioIcon() {
 }
 
 function calcHealthBar(live) {
-  var currentHealth = live * 10;
+  if (live < 0) {
+    live = 0;
+  }
+  var currentHealth = live;
+  if (live <= 25) {
+    healthBarElement.style.backgroundColor = "red";
+  } else {
+    healthBarElement.style.backgroundColor = "#82D1FD"
+  }
   var percentageHealth = currentHealth + "%"
   healthPercentageElement.textContent = percentageHealth
   healthBarElement.style.width = percentageHealth;
 }
 
 function toggleLimitBreak(){
-  if(limitBreak === "Off") {
-    limitBreak = "On";
-    limitBreakElement.textContent = limitBreak;
+  if(limitBreak === false) {
+    limitBreak = true;
+    limitBreakElement.textContent = "On";
     playAudio(audio.limitBreak);
-  } else if (limitBreak === "On") {
-    limitBreak = "Off";
-    limitBreakElement.textContent = limitBreak;
+  } else if (limitBreak === true) {
+    limitBreak = false;
+    limitBreakElement.textContent = "Off";
   }
+}
+
+function changeDifficulty() {
+  if (difficultyIndex % 3 === 0) {
+    difficultyIndex++;
+    currentDifficulty = difficulty[1];
+  } else if (difficultyIndex % 3 === 1) {
+    difficultyIndex++;
+    currentDifficulty = difficulty[2];
+  } else {
+    difficultyIndex++;
+    currentDifficulty = difficulty[0];
+  }
+  currentDifficultyElement.textContent = currentDifficulty;
+}
+
+function calculateDamage(difficulty) {
+  if (difficulty === "Easy") {
+    live -= 5;
+  } else if (difficulty === "Normal") {
+    live -= 10;
+  } else if (difficulty == "Hard") {
+    live -= 20;
+  }
+}
+
+function clickHint() {
+  removeHint()
+  var allHidden = document.querySelectorAll(".card-back:not(.hidden)");
+  var randomNumber = Math.floor(Math.random() * allHidden.length);
+  var cardHintClass = allHidden[randomNumber].previousElementSibling.className;
+  var cardHint = cardHintClass.slice(11);
+  cardHint = cardHint.replace("-", " ")
+  hintTextElement.textContent = cardHint;
+  allHidden[randomNumber].parentElement.classList.add("hintCard");
+}
+
+function removeHint() {
+  var cardHint = document.querySelector(".hintCard");
+  if (cardHint !== null) {
+    cardHint.classList.remove("hintCard");
+  }
+  hintTextElement.textContent = "";
 }
