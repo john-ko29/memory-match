@@ -1,6 +1,9 @@
 body {
-  height: 97vh;
-  background-image: url(../images/lfz-background.jpg);
+  height: 98vh;
+  background-image: url(../images/ff-background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -28,6 +31,37 @@ body {
   padding: 10px;
 }
 
+.victory-content {
+  text-align: center;
+  width: 90%;
+  height: 90vh;
+  color: white;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../images/victory.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.gameover-content {
+  text-align: center;
+  color: white;
+  width: 90%;
+  height: 90vh;
+  background-image: url(../images/gameover.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#resetGameOver {
+  margin: 0 30px 40px;
+}
+
 .row-1 {
   width: 100%;
   height: 10%;
@@ -39,8 +73,14 @@ body {
 
 .row-2 {
   width: 100%;
-  height: 90%;
+  height: 80%;
   display: flex;
+  margin-bottom: .5rem;
+}
+
+.row-3 {
+  width: 100%;
+  height: 8%;
   margin-bottom: .5rem;
 }
 
@@ -95,7 +135,7 @@ body {
 aside{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -109,20 +149,74 @@ main {
 .title {
   text-align: center;
   font-size: 3rem;
+  color: white;
 }
 
-.blue {
-  background-color: #86CEEB;
+.menu-layout {
+  box-sizing: border-box;
   width: 75%;
-  height: 20%;
+  background-color: #050177;
+  border: 3px solid #C2C5C1;
+  border-style: outset;
+  color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
+}
+
+.hp-layout {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #050177;
+  border: 3px solid #C2C5C1;
+  color: white;
+  text-align: center;
+}
+
+.menu-layout > * {
+  margin: 0;
+}
+
+#changeDifficulty, #hint {
+  cursor: pointer;
+}
+
+.hp-layout > * {
+  margin: 0;
+}
+
+#hp-bar {
+  width: 100%;
+  height: 20px;
+  border-radius: 5%;
+  position: relative;
+  background-color: #52638C;
+  margin-bottom: 10px;
+}
+
+#hp-current {
+  background-color: #82D1FD;
+  border-radius: 5%;
+  height: 20px;
+  position: absolute;
+  transition: width 2s;
 }
 
 card {
   height: 30%;
   position: relative;
+  cursor: pointer;
+  transition: 0.8s;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+  border: 5px solid white ;
+}
+
+.flip {
+  transform: rotateY(180deg);
 }
 
 .card-front, .card-back {
@@ -134,51 +228,103 @@ card {
   position: absolute;
 }
 
+.hintCard {
+  border: 5px solid chartreuse;
+}
+
+#hintText {
+  text-transform: capitalize;
+}
+
 button {
   font-size: 2rem;
   padding: 10px;
+  cursor: pointer;
+}
+
+.bgm {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .card-back {
-  background-image: url(../images/lfz-card.jpg);
+  background-image: url(../images/ff-front.jpeg);
 }
 
-.css-logo {
-  background-image: url(../images/css-logo.png);
+.buster-sword {
+  background-image: url(../images/bustersword.png);
 }
 
-.docker-logo {
-  background-image: url(../images/docker-logo.jpg);
+.revolver {
+  background-image: url(../images/revolver.png);
 }
 
-.gitHub-logo {
-  background-image: url(../images/gitHub-logo.png);
+.pinwheel {
+  background-image: url(../images/pinwheel.jpg);
 }
 
-.html-logo {
-  background-image: url(../images/html-logo.png);
+.mage-masher {
+  background-image: url(../images/masher.png);
 }
 
-.js-logo {
-  background-image: url(../images/js-logo.png);
+.brotherhood {
+  background-image: url(../images/brotherhood.png);
 }
 
-.mysql-logo {
-  background-image: url(../images/mysql-logo.jpg);
+.blazefire {
+  background-image: url(../images/blazefire.png);
 }
 
-.node-logo {
-  background-image: url(../images/node-logo.png);
+.braveheart {
+  background-image: url(../images/braveheart.png);
 }
 
-.php-logo {
-  background-image: url(../images/php-logo.jpeg);
+.hardedge {
+  background-image: url(../images/hardedge.png);
 }
 
-.react-logo {
-  background-image: url(../images/react-logo.png);
+.broadsword {
+  background-image: url(../images/broadsword.png);
 }
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (max-width: 460px) {
+  .row-1 {
+    height: 5%;
+  }
+
+  .row-2 {
+    height: 85%;
+    display: block;
+  }
+
+  aside {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  card {
+    height: 20%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .bgm {
+    top: 0px;
+    left: 5px;
+  }
 }
