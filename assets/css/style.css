@@ -297,8 +297,68 @@ button {
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 1112px) {
+  .menu-layout > h2 {
+    font-size: 1.3em;
+  }
+  .menu-layout:nth-child(5) {
+    font-size: 1.2em;
+  }
+}
 
+@media screen and (max-width: 768px) {
+  .row-1 {
+    height: 5%;
+    margin-bottom: .3rem;
+  }
+
+  .row-2 {
+    height: 85%;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  .aside {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: .1rem;
+  }
+
+  .menu-layout {
+    width: 32%;
+    margin-bottom: 10px;
+  }
+
+  .menu-layout:first-child {
+    display: none;
+  }
+
+  .menu-layout > h2 {
+    font-size: 1.0em;
+  }
+
+  .menu-layout:nth-child(5) {
+    font-size: .9em;
+  }
+
+  .menu-layout:nth-child(7) {
+    align-self: stretch;
+  }
+
+  #gameCards {
+    width: 100%;
+    align-content: space-around;
+    height: 85%;
+  }
+
+  card {
+    width: 16%;
+    height: 24%;
+    border: 1px solid white ;
+    background-position: center;
+  }
 }
 
 @media screen and (max-width: 667px) {
@@ -310,7 +370,7 @@ button {
   .row-2 {
     height: 75%;
     display: block;
-    margin-bottom: .4rem;
+    margin-bottom: 1rem;
   }
 
   .aside {
@@ -323,6 +383,8 @@ button {
 
   #gameCards {
     width: 100%;
+    align-content: space-between;
+    height: 85%;
   }
 
   .menu-layout {
@@ -336,6 +398,10 @@ button {
 
   .menu-layout > h2 {
     font-size: 1.0em;
+  }
+
+  .menu-layout:nth-child(5) {
+    font-size: .9em;
   }
 
   .menu-layout:nth-child(7) {
@@ -353,9 +419,17 @@ button {
 
   card {
     width: 16%;
-    height: 17%;
+    height: 33%;
     border: 1px solid white ;
     background-position: center;
+  }
+
+  .hp-layout {
+    font-size: .8em;
+  }
+
+  #hp-bar, #hp-current {
+    height: 10px;
   }
 }
 
@@ -426,5 +500,9 @@ button {
   .bgm {
     top: 0px;
     left: 5px;
+  }
+
+  #hp-bar, #hp-current {
+    height: 10px;
   }
 }
