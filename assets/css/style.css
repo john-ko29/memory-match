@@ -149,7 +149,7 @@ main {
 .title {
   text-align: center;
   font-size: 3rem;
-  color: WHITE;
+  color: white;
 }
 
 .menu-layout {
@@ -168,7 +168,7 @@ main {
 
 .hp-layout {
   box-sizing: border-box;
-  width: 95%;
+  width: 100%;
   background-color: #050177;
   border: 3px solid #C2C5C1;
   color: white;
@@ -212,6 +212,7 @@ card {
   perspective: 1000px;
   transform-style: preserve-3d;
   box-sizing: border-box;
+  border: 5px solid white ;
 }
 
 .flip {
@@ -298,8 +299,32 @@ button {
 
 }
 
-@media screen and (min-width: 460px) {
-  aside {
+@media screen and (max-width: 460px) {
+  .row-1 {
+    height: 5%;
+  }
+
+  .row-2 {
+    height: 85%;
     display: block;
+  }
+
+  aside {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  card {
+    height: 20%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .bgm {
+    top: 0px;
+    left: 5px;
   }
 }
