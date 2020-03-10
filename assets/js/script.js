@@ -217,7 +217,7 @@ function createCard(cardArray) {
   var newArray = [];
   for(var index = 0; index < cardArray.length; index++) {
     var card = document.createElement("card");
-    card.classList.add("col-2");
+    // card.classList.add("col-2");
 
     var cardFront = document.createElement("div");
     cardFront.classList.add("card-front");
