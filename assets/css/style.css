@@ -301,7 +301,7 @@ button {
   .menu-layout > h2 {
     font-size: 1.3em;
   }
-  .menu-layout:nth-child(5) {
+  .menu-layout:nth-child(4) {
     font-size: 1.2em;
   }
 }
@@ -339,7 +339,7 @@ button {
     font-size: 1.0em;
   }
 
-  .menu-layout:nth-child(5) {
+  .menu-layout:nth-child(4) {
     font-size: .9em;
   }
 
@@ -400,7 +400,7 @@ button {
     font-size: 1.0em;
   }
 
-  .menu-layout:nth-child(5) {
+  .menu-layout:nth-child(4) {
     font-size: .9em;
   }
 
@@ -490,7 +490,7 @@ button {
   }
 
   .hintCard {
-  border: 1px solid chartreuse;
+  border: 5px solid chartreuse;
 }
 
   .title {
