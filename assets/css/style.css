@@ -217,6 +217,10 @@ card {
   border: 5px solid white ;
 }
 
+card:hover {
+  transform: translate(0, -15px);
+}
+
 .flip {
   transform: rotateY(180deg);
 }
@@ -303,6 +307,41 @@ button {
   }
   .menu-layout:nth-child(4) {
     font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .row-2 {
+    flex-direction: column;
+  }
+  .aside {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  .menu-layout {
+    width: 32%;
+    margin-bottom: 10px;
+  }
+
+  .menu-layout:first-child {
+    display: none;
+  }
+
+  .menu-layout:last-child {
+    align-self: stretch;
+  }
+
+  #gameCards {
+    width: 100%;
+    align-content: space-between;
+    align-content: space-around;
+  }
+
+  card {
+    height: 25%;
   }
 }
 
