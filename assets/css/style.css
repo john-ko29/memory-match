@@ -217,10 +217,6 @@ card {
   border: 5px solid white ;
 }
 
-card:hover {
-  transform: translate(0, -15px);
-}
-
 .flip {
   transform: rotateY(180deg);
 }
@@ -299,6 +295,12 @@ button {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 1366px) {
+  .aside {
+    justify-content: space-between;
+  }
 }
 
 @media screen and (max-width: 1112px) {
