@@ -30,7 +30,7 @@
             <h2>Accuracy</h2>
             <h2 id="accuracy">0</h2>
           </div>
-          <div class="menu-layout">
+          <div class="menu-layout" id="limitBreakMenu">
             <h2 class="limitBreakTitle">Limit Break</h2>
             <h2 id="limitBreak">Off</h2>
           </div>
@@ -70,7 +70,11 @@
         <button id="resetGameOver">Would You Like to Play Again?</button>
       </div>
     </div>
-
+    <div id="limitBreakModal" class="modal-overlay hidden">
+      <div class="limitbreak-content">
+        <h1>Get Two Matches in A Row and You Become Invulnerable for 10 Seconds</h1>
+      </div>
+    </div>
     <script src="assets/js/script.js"></script>
   </body>
 </html>
