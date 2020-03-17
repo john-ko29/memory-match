@@ -1,27 +1,22 @@
 var mainElement = document.getElementById("gameCards");
-mainElement.addEventListener("click", handleClick);
 var modalElement = document.getElementById("modal");
 var gamePlayedElement = document.getElementById("gamePlayed");
 var attemptsElement = document.getElementById("attempts");
 var accuracyElement = document.getElementById("accuracy");
 var buttonElement = document.getElementById("resetGame");
 var buttonElement2 = document.getElementById("resetGameOver");
-buttonElement.addEventListener("click", resetGame);
-buttonElement2.addEventListener("click", resetGame);
 var gameOverElement = document.getElementById("game-over")
 var volumeElement = document.getElementById("bgm");
-volumeElement.addEventListener("click", toggleAudioIcon);
 var healthBarElement = document.getElementById("hp-current");
 var healthPercentageElement = document.getElementById("healthPerc");
+var limitBreakMenuElement = document.getElementById("limitBreakMenu");
+var limitBreakModalElement = document.getElementById("limitBreakModal");
 var limitBreakElement = document.getElementById("limitBreak");
 var changeDifficultyElement = document.getElementById("changeDifficulty");
-changeDifficultyElement.addEventListener("click", changeDifficulty);
 var currentDifficultyElement = document.getElementById("difficulty");
 var currentDifficulty = "Normal";
 var hintElement = document.getElementById("hint");
-hintElement.addEventListener("click", clickHint);
 var hintTextElement = document.getElementById("hintText");
-
 var audioElement = document.createElement("audio");
 var audio = {
   "victory": "assets/audio/final-fantasy-vii-victory-fanfare-1.mp3",
@@ -68,6 +63,7 @@ var live = 100;
 var matchInRow = 0;
 var limitBreak = false;
 
+addListener();
 displayStats();
 shuffle();
 
@@ -78,7 +74,10 @@ function handleClick(event) {
   removeHint()
   event.target.parentElement.classList.add("flip");
   var targetElement = event.target;
-  targetElement.classList.add("hidden");
+  setTimeout(function(){
+    targetElement.classList.add("hidden");
+  }, 300);
+
 
   if (!firstCardClicked) {
     firstCardClicked = event.target;
@@ -327,4 +326,23 @@ function removeHint() {
     cardHint.classList.remove("hintCard");
   }
   hintTextElement.textContent = "";
+}
+
+function showExplanation() {
+  limitBreakModalElement.classList.remove("hidden");
+}
+
+function hideExplanation() {
+  limitBreakModalElement.classList.add("hidden");
+}
+
+function addListener() {
+  mainElement.addEventListener("click", handleClick);
+  buttonElement.addEventListener("click", resetGame);
+  buttonElement2.addEventListener("click", resetGame);
+  volumeElement.addEventListener("click", toggleAudioIcon);
+  changeDifficultyElement.addEventListener("click", changeDifficulty);
+  hintElement.addEventListener("click", clickHint);
+  limitBreakMenuElement.addEventListener("mouseover", showExplanation);
+  limitBreakMenuElement.addEventListener("mouseout", hideExplanation);
 }
