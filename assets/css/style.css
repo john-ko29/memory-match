@@ -312,6 +312,12 @@ button {
   .aside {
     justify-content: space-between;
   }
+
+  button {
+    background-color: grey;
+    border: 2px solid black;
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 1112px) {
